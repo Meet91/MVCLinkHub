@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LinkHubUI.Areas.User
+namespace LinkHubUI.Areas.User.Controllers
 {
     public class URLController : Controller
     {
