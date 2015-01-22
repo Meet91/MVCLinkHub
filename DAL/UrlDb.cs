@@ -10,7 +10,6 @@ namespace DAL
 {
     class UrlDb
     {
-
         private LinkHubDbEntities db;
 
         public UrlDb()
