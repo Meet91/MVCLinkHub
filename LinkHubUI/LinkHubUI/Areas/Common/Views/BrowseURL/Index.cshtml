@@ -11,17 +11,21 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UrlTitle)
+            @Html.ActionLink("UrlTitle", "Index", new {SortOrder=ViewBag.SortOrder==null?"Asc":(ViewBag.SortOrder=="Asc"?"Desc":"Asc"),SortBy="Title" })
+            @*@Html.DisplayNameFor(model => model.UrlTitle)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Url)
+            @Html.ActionLink("Url", "Index", new { SortOrder = ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc"), SortBy = "Url" })
+            @*@Html.DisplayNameFor(model => model.Url)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UrlDesc)
+            @Html.ActionLink("UrlDesc", "Index", new { SortOrder = ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc"), SortBy = "UrlDesc" })
+            @*@Html.DisplayNameFor(model => model.UrlDesc)*@
         </th>
        
         <th>
-            @Html.DisplayNameFor(model => model.tbl_Category.CategoryName)
+            @Html.ActionLink("CategoryName", "Index", new { SortOrder = ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc"), SortBy = "Category" })
+            @*@Html.DisplayNameFor(model => model.tbl_Category.CategoryName)*@
         </th>
        
         <th></th>
