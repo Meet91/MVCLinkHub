@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,17 @@ namespace LinkHubUI.Areas.Common.Controllers
 {
     public class BrowseURLController : Controller
     {
+        private UrlBs ObjBs;
+        public BrowseURLController()
+        {
+            ObjBs = new UrlBs();
+        }
+
         // GET: Common/BrowseURL
         public ActionResult Index()
         {
-            return View();
+            var urls = ObjBs.GetAll();
+            return View(urls);
         }
     }
 }
