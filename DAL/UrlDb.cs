@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    class UrlDb
+   public class UrlDb
     {
         private LinkHubDbEntities db;
 
