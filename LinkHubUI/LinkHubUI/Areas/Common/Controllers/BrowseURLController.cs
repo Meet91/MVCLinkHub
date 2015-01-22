@@ -82,6 +82,7 @@ namespace LinkHubUI.Areas.Common.Controllers
 
                 default:
                     urls = urls.OrderBy(x => x.UrlTitle).ToList();
+                    break;
 
 
             }
