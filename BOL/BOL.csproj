@@ -72,6 +72,7 @@
     <Compile Include="tbl_User.cs">
       <DependentUpon>LinkHubModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tbl_UserValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="LinkHubModel.edmx">
