@@ -4,7 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete??');
+    }
+</script>
 <h2>Category List</h2>
 @if(TempData["msg"]!=null)
 {
@@ -35,7 +39,7 @@
             @Html.DisplayFor(modelItem => item.CategoryDesc)
         </td>
         <td>
-            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId})
+            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId }, new {onclick="return confirmDelete()" })
         </td>
     </tr>
 }
