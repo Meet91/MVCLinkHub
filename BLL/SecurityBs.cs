@@ -6,17 +6,8 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class SecurityBs
+    public class SecurityBs: BaseBs
     {
-        public CategoryBs categoryBs { get; set; }
-        public UserBs userBs { get; set; }
-        public UrlBs urlBs { get; set; }
-
-        public SecurityBs()
-        {
-            categoryBs = new CategoryBs();
-            urlBs = new UrlBs();
-            userBs = new UserBs();
-        }
+        
     }
 }
