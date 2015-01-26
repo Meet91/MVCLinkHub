@@ -7,21 +7,15 @@ using System.Web.Mvc;
 
 namespace LinkHubUI.Areas.Admin.Controllers
 {
-    public class ListCategoryController : Controller
+    public class ListCategoryController : BaseAdminController
     {
-        private CategoryBs ObjBs;
-
-        public ListCategoryController()
-        {
-            ObjBs = new CategoryBs();
-        }
-
+      
         // GET: Admin/ListCategory
         public ActionResult Index(string sortOrder, string sortBy, string Page)
         {
             ViewBag.SortOrder = sortOrder;
             ViewBag.SortBy = sortBy;
-            var categories = ObjBs.GetAll();
+            var categories = ObjBs.categoryBs.GetAll();
 
             switch (sortBy)
             {
@@ -59,7 +53,7 @@ namespace LinkHubUI.Areas.Admin.Controllers
             }
 
             //Paging logic
-            ViewBag.TotalPages = Math.Ceiling(ObjBs.GetAll().Count() / 10.0);
+            ViewBag.TotalPages = Math.Ceiling(ObjBs.categoryBs.GetAll().Count() / 10.0);
 
             int page = int.Parse(Page == null ? "1" : Page);
             ViewBag.Page = page;
@@ -73,7 +67,7 @@ namespace LinkHubUI.Areas.Admin.Controllers
         {
             try
             {
-                ObjBs.Delete(id);
+                ObjBs.categoryBs.Delete(id);
                 TempData["msg"]="Deleted Successfully.";
                 return RedirectToAction("Index");
             }catch(Exception ex){
