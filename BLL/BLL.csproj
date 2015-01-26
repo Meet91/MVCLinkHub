@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminBs.cs" />
     <Compile Include="CategoryBs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UrlBs.cs" />
