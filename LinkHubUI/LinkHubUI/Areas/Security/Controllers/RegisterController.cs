@@ -24,7 +24,7 @@ namespace LinkHubUI.Areas.Security.Controllers
                 {
                     user.Role = "U";
                     ObjBs.userBs.Insert(user);
-                    TempData["msg"] = "Created Successfully.";
+                    TempData["msg"] = "Registration Successfull.";
                     return RedirectToAction("Index");
                 }
                 else
