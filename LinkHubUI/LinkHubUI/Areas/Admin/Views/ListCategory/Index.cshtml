@@ -6,7 +6,13 @@
 }
 
 <h2>Category List</h2>
-
+@if(TempData["msg"]!=null)
+{
+    <h3>@TempData["msg"].ToString()</h3>
+}
+<p>
+    @Html.ActionLink("Create New","Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -17,7 +23,7 @@
             @Html.ActionLink("CategoryDesc", "Index", new { SortOrder = ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc"), SortBy = "CategoryDesc", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
             @*@Html.DisplayNameFor(model => model.CategoryDesc)*@
         </th>
-        <th></th>
+        <th>Delete</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -26,8 +32,10 @@
             @Html.DisplayFor(modelItem => item.CategoryName)
         </td>
         <td>
-            
             @Html.DisplayFor(modelItem => item.CategoryDesc)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId})
         </td>
     </tr>
 }
