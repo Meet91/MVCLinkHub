@@ -64,6 +64,7 @@
     <Compile Include="tbl_Category.cs">
       <DependentUpon>LinkHubModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="tbl_CategoryValidation.cs" />
     <Compile Include="tbl_Url.cs">
       <DependentUpon>LinkHubModel.tt</DependentUpon>
     </Compile>
