@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace LinkHubUI.Areas.Admin.Controllers
 {
-    public class ApprovedURLsController : Controller
+    public class ApprovedURLsController : BaseAdminController
     {
         // GET: Admin/ApprovedURLs
         public ActionResult Index()
