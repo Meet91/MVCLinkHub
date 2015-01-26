@@ -29,9 +29,17 @@ namespace LinkHubUI.Areas.Admin.Controllers
         {
             try
             {
-                objBs.Insert(category);
-                TempData["msg"] = "Created Sucessfully.";
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    objBs.Insert(category);
+                    TempData["msg"] = "Created Sucessfully.";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View("Index");
+                }
+                
             }
             catch (Exception ex)
             {
