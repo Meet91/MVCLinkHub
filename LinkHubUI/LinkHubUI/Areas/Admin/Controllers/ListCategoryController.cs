@@ -68,5 +68,18 @@ namespace LinkHubUI.Areas.Admin.Controllers
 
             return View(categories);
         }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                ObjBs.Delete(id);
+                TempData["msg"]="Deleted Successfully.";
+                return RedirectToAction("Index");
+            }catch(Exception ex){
+                TempData["msg"] = "Delete Failed. " + ex.Message;
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
