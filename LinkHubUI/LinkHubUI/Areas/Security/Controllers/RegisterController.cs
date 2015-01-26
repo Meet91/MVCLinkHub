@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace LinkHubUI.Areas.Security.Controllers
 {
-    public class RegisterController : Controller
+    public class RegisterController : BaseSecurityController
     {
         // GET: Security/Register
         public ActionResult Index()
