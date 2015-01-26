@@ -12,15 +12,15 @@ namespace LinkHubUI.Areas.User.Controllers
     public class URLController : Controller
     {
 
-        private UrlBs objUrlBs;
-        private CategoryBs objCatBs;
-        private UserBs objUserBs;
+        
+
+        private UserAreaBs objBs;
 
         public URLController()
         {
-            objUrlBs = new UrlBs();
-            objCatBs = new CategoryBs();
-            objUserBs = new UserBs();
+            objBs = new UserAreaBs();
+
+            
         }
 
         // GET: User/URL
@@ -29,8 +29,8 @@ namespace LinkHubUI.Areas.User.Controllers
             //LinkHubDbEntities db = new LinkHubDbEntities();
             //ViewBag.CategoryId = new SelectList(db.tbl_Category, "CategoryId", "CategoryName");
 
-            ViewBag.CategoryId = new SelectList(objCatBs.GetAll().ToList(), "CategoryId", "CategoryName");
-            ViewBag.UserId = new SelectList(objUserBs.GetAll().ToList(), "UserId", "UserEmail");
+            ViewBag.CategoryId = new SelectList(objBs.categoryBs.GetAll().ToList(), "CategoryId", "CategoryName");
+            ViewBag.UserId = new SelectList(objBs.urlBs.GetAll().ToList(), "UserId", "UserEmail");
 
             return View();
         }
@@ -46,14 +46,14 @@ namespace LinkHubUI.Areas.User.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    objUrlBs.Insert(objUrl);
+                    objBs.urlBs.Insert(objUrl);
                     TempData["msg"] = "Created Successfully.";
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ViewBag.CategoryId = new SelectList(objCatBs.GetAll().ToList(), "CategoryId", "CategoryName");
-                    ViewBag.UserId = new SelectList(objUserBs.GetAll().ToList(), "UserId", "UserEmail");
+                    ViewBag.CategoryId = new SelectList(objBs.categoryBs.GetAll().ToList(), "CategoryId", "CategoryName");
+                    ViewBag.UserId = new SelectList(objBs.userBs.GetAll().ToList(), "UserId", "UserEmail");
                     return View("Index");
                 }
             }
