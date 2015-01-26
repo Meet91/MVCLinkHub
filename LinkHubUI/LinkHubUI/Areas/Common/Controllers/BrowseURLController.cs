@@ -9,10 +9,10 @@ namespace LinkHubUI.Areas.Common.Controllers
 {
     public class BrowseURLController : Controller
     {
-        private UrlBs ObjBs;
+        private CommonBs ObjBs;
         public BrowseURLController()
         {
-            ObjBs = new UrlBs();
+            ObjBs = new CommonBs();
         }
 
         // GET: Common/BrowseURL
@@ -20,7 +20,7 @@ namespace LinkHubUI.Areas.Common.Controllers
         {
             ViewBag.SortOrder = sortOrder;
             ViewBag.SortBy = sortBy;
-            var urls = ObjBs.GetAll().Where(x=>x.IsApproved=="A");
+            var urls = ObjBs.urlBs.GetAll().Where(x=>x.IsApproved=="A");
 
             switch(sortBy)
             {
@@ -66,27 +66,13 @@ namespace LinkHubUI.Areas.Common.Controllers
                     }
                     break;
 
-                //case "Category":
-                //    switch (sortOrder)
-                //    {
-                //        case "Asc":
-                //            urls = urls.OrderBy(x => x.tbl_Category.CategoryName).ToList();
-                //            break;
-                //        case "Desc":
-                //            urls = urls.OrderByDescending(x => x.tbl_Category.CategoryName).ToList();
-                //            break;
-                //        default:
-                //            break;
-                //    }
-                //    break;
-
                 default:
                     urls = urls.OrderBy(x => x.UrlTitle).ToList();
                     break;
             }
 
             //Paging logic
-            ViewBag.TotalPages = Math.Ceiling(ObjBs.GetAll().Where(x => x.IsApproved == "A").Count() / 10.0);
+            ViewBag.TotalPages = Math.Ceiling(ObjBs.urlBs.GetAll().Where(x => x.IsApproved == "A").Count() / 10.0);
 
             int page = int.Parse(Page == null ? "1" : Page);
             ViewBag.Page = page;
