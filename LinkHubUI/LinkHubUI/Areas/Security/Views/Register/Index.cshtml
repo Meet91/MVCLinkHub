@@ -10,12 +10,19 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <h2>Index</h2>
 
-@using (Html.BeginForm()) 
+@if(TempData["msg"]!=null)
+{
+    <h4>
+        @TempData["msg"].ToString()
+    </h4>
+}
+
+@using (Html.BeginForm("Create","Register",FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>tbl_User</h4>
+        <h4>User Registration</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
