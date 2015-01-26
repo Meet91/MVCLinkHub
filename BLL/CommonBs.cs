@@ -6,17 +6,8 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class CommonBs
+    public class CommonBs :BaseBs
     {
-        public CategoryBs categoryBs { get; set; }
-        public UserBs userBs { get; set; }
-        public UrlBs urlBs { get; set; }
-
-        public CommonBs()
-        {
-            categoryBs = new CategoryBs();
-            urlBs = new UrlBs();
-            userBs = new UserBs();
-        }
+       
     }
 }
