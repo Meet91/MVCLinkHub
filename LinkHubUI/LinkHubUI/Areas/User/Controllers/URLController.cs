@@ -9,28 +9,16 @@ using BLL;
 
 namespace LinkHubUI.Areas.User.Controllers
 {
-    public class URLController : Controller
+    public class URLController : BaseUserController
     {
-
-        
-
-        private UserAreaBs objBs;
-
-        public URLController()
-        {
-            objBs = new UserAreaBs();
-
-            
-        }
-
         // GET: User/URL
         public ActionResult Index()
         {
             //LinkHubDbEntities db = new LinkHubDbEntities();
             //ViewBag.CategoryId = new SelectList(db.tbl_Category, "CategoryId", "CategoryName");
 
-            ViewBag.CategoryId = new SelectList(objBs.categoryBs.GetAll().ToList(), "CategoryId", "CategoryName");
-            ViewBag.UserId = new SelectList(objBs.urlBs.GetAll().ToList(), "UserId", "UserEmail");
+            ViewBag.CategoryId = new SelectList(ObjBs.categoryBs.GetAll().ToList(), "CategoryId", "CategoryName");
+            ViewBag.UserId = new SelectList(ObjBs.urlBs.GetAll().ToList(), "UserId", "UserEmail");
 
             return View();
         }
@@ -46,14 +34,14 @@ namespace LinkHubUI.Areas.User.Controllers
             {
                 if(ModelState.IsValid)
                 {
-                    objBs.urlBs.Insert(objUrl);
+                    ObjBs.urlBs.Insert(objUrl);
                     TempData["msg"] = "Created Successfully.";
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    ViewBag.CategoryId = new SelectList(objBs.categoryBs.GetAll().ToList(), "CategoryId", "CategoryName");
-                    ViewBag.UserId = new SelectList(objBs.userBs.GetAll().ToList(), "UserId", "UserEmail");
+                    ViewBag.CategoryId = new SelectList(ObjBs.categoryBs.GetAll().ToList(), "CategoryId", "CategoryName");
+                    ViewBag.UserId = new SelectList(ObjBs.userBs.GetAll().ToList(), "UserId", "UserEmail");
                     return View("Index");
                 }
             }
