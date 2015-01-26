@@ -131,11 +131,14 @@
     <Compile Include="Areas\Admin\Controllers\ListCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ListUserController.cs" />
     <Compile Include="Areas\Common\CommonAreaRegistration.cs" />
+    <Compile Include="Areas\Common\Controllers\BaseCommonController.cs" />
     <Compile Include="Areas\Common\Controllers\BrowseURLController.cs" />
     <Compile Include="Areas\Common\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Security\Controllers\BaseSecurityController.cs" />
     <Compile Include="Areas\Security\Controllers\LoginController.cs" />
     <Compile Include="Areas\Security\Controllers\RegisterController.cs" />
     <Compile Include="Areas\Security\SecurityAreaRegistration.cs" />
+    <Compile Include="Areas\User\Controllers\BaseUserController.cs" />
     <Compile Include="Areas\User\Controllers\URLController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
@@ -166,8 +169,11 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\BaseAdmin\" />
     <Folder Include="Areas\Common\Models\" />
+    <Folder Include="Areas\Common\Views\BaseCommon\" />
     <Folder Include="Areas\Security\Models\" />
+    <Folder Include="Areas\Security\Views\BaseSecurity\" />
     <Folder Include="Areas\User\Models\" />
+    <Folder Include="Areas\User\Views\BaseUser\" />
     <Folder Include="Areas\User\Views\Shared\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
