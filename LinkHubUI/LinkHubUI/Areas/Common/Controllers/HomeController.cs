@@ -6,11 +6,12 @@ using System.Web.Mvc;
 
 namespace LinkHubUI.Areas.Common.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseCommonController
     {
         // GET: Common/Home
         public ActionResult Index()
         {
+            
             return View();
         }
     }
