@@ -30,9 +30,14 @@ namespace BOL
 
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public string ConfirmPassword { get; set; }
     }
 
     [MetadataType(typeof(tbl_UserValidation))]
     public partial class tbl_User
-    { }
+    {
+        public string ConfirmPassword { get; set; }
+    }
 }
