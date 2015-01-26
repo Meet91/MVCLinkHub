@@ -29,7 +29,7 @@
 
     @if (ViewBag.Status == "P")
     {
-        <b>@Html.ActionLink("Pending Urls", "Index", new { Status = "P" })</b>
+        <b>@Html.ActionLink("Pending Urls |", "Index", new { Status = "P" })</b>
     }
     else
     {
@@ -37,11 +37,11 @@
     }
     @if (ViewBag.Status == "A")
     {
-        <b>@Html.ActionLink(" Approved Urls", "Index", new { Status = "A" })</b>
+        <b>@Html.ActionLink(" Approved Urls |", "Index", new { Status = "A" })</b>
     }
     else
     {
-        @Html.ActionLink(" Approved Urls", "Index", new { Status = "A" })
+        @Html.ActionLink(" Approved Urls |", "Index", new { Status = "A" })
     }
     @if (ViewBag.Status == "R")
     {
