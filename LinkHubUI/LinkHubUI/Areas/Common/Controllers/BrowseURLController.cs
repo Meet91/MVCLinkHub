@@ -16,7 +16,7 @@ namespace LinkHubUI.Areas.Common.Controllers
         }
 
         // GET: Common/BrowseURL
-        public ActionResult Index(string sortOrder,string sortBy)
+        public ActionResult Index(string sortOrder,string sortBy,string Page)
         {
             ViewBag.SortOrder = sortOrder;
             ViewBag.SortBy = sortBy;
@@ -66,38 +66,33 @@ namespace LinkHubUI.Areas.Common.Controllers
                     }
                     break;
 
-                case "Category":
-                    switch (sortOrder)
-                    {
-                        case "Asc":
-                            urls = urls.OrderBy(x => x.tbl_Category.CategoryName).ToList();
-                            break;
-                        case "Desc":
-                            urls = urls.OrderByDescending(x => x.tbl_Category.CategoryName).ToList();
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
+                //case "Category":
+                //    switch (sortOrder)
+                //    {
+                //        case "Asc":
+                //            urls = urls.OrderBy(x => x.tbl_Category.CategoryName).ToList();
+                //            break;
+                //        case "Desc":
+                //            urls = urls.OrderByDescending(x => x.tbl_Category.CategoryName).ToList();
+                //            break;
+                //        default:
+                //            break;
+                //    }
+                //    break;
 
                 default:
                     urls = urls.OrderBy(x => x.UrlTitle).ToList();
                     break;
-
-
             }
 
-            /*switch (sortOrder)
-            {
-                case "Asc":
-                    urls = urls.OrderBy(x => x.UrlTitle).ToList();
-                    break;
-                case "Desc":
-                    urls = urls.OrderByDescending(x => x.UrlTitle).ToList();
-                    break;
-                default:
-                    break;
-            }*/
+            //Paging logic
+            ViewBag.TotalPages = Math.Ceiling(ObjBs.GetAll().Where(x => x.IsApproved == "A").Count() / 10.0);
+
+            int page = int.Parse(Page == null ? "1" : Page);
+            ViewBag.Page = page;
+
+            urls=urls.Skip((page-1)*10).Take(10);
+
             return View(urls);
         }
     }
