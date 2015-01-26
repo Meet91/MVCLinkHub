@@ -9,11 +9,11 @@ namespace LinkHubUI.Areas.Admin.Controllers
 {
     public class ListUserController : Controller
     {
-        private UserBs ObjBs;
+        private AdminBs ObjBs;
 
         public ListUserController()
         {
-            ObjBs = new UserBs();
+            ObjBs = new AdminBs();
         }
 
         // GET: Admin/ListUser
@@ -21,7 +21,7 @@ namespace LinkHubUI.Areas.Admin.Controllers
         {
             ViewBag.SortOrder = sortOrder;
             ViewBag.SortBy = sortBy;
-            var users = ObjBs.GetAll();
+            var users = ObjBs.userBs.GetAll();
 
             switch (sortBy)
             {
@@ -59,7 +59,7 @@ namespace LinkHubUI.Areas.Admin.Controllers
             }
 
             //Paging logic
-            ViewBag.TotalPages = Math.Ceiling(ObjBs.GetAll().Count() / 10.0);
+            ViewBag.TotalPages = Math.Ceiling(ObjBs.userBs.GetAll().Count() / 10.0);
 
             int page = int.Parse(Page == null ? "1" : Page);
             ViewBag.Page = page;
