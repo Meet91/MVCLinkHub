@@ -11,6 +11,7 @@ namespace BOL
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class tbl_Category
     {
@@ -20,7 +21,11 @@ namespace BOL
         }
     
         public int CategoryId { get; set; }
+
+        [Required]
         public string CategoryName { get; set; }
+
+        [Required]
         public string CategoryDesc { get; set; }
     
         public virtual ICollection<tbl_Url> tbl_Url { get; set; }
