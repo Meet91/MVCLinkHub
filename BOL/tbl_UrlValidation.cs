@@ -7,6 +7,20 @@ using System.Threading.Tasks;
 
 namespace BOL
 {
+
+    public class UniqueUrlAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            LinkHubDbEntities db = new LinkHubDbEntities();
+            string urlValue = value.ToString();
+            int count = db.tbl_Url.Where(x => x.Url==urlValue).ToList().Count();
+            if (count != 0)
+                return new ValidationResult("Url Already Exist.");
+            return ValidationResult.Success;
+        }
+    }
+
     public class tbl_UrlValidation
     {
 
@@ -15,6 +29,7 @@ namespace BOL
 
         [Required]
         [Url]
+        [UniqueUrl]
         public string Url { get; set; }
 
         [Required]
