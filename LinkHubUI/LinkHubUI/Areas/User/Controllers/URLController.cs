@@ -29,7 +29,7 @@ namespace LinkHubUI.Areas.User.Controllers
                 if(ModelState.IsValid)
                 {
                     ObjBs.urlBs.Insert(objUrl);
-                    TempData["msg"] = "Created Successfully.";
+                    TempData["msg"] = "Urls Created Successfully.";
                     return RedirectToAction("Index");
                 }
                 else
@@ -41,7 +41,7 @@ namespace LinkHubUI.Areas.User.Controllers
             }
             catch (Exception ex)
             {
-                TempData["msg"] = "Create Failed: " + ex.Message;
+                TempData["msg"] = "Url Creation Failed: " + ex.Message;
                 return RedirectToAction("Index");
             }
         }
