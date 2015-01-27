@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace LinkHubUI.Areas.Security.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : BaseSecurityController
     {
         // GET: Security/Login
