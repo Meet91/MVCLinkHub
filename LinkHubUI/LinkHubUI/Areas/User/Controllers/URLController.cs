@@ -9,6 +9,7 @@ using BLL;
 
 namespace LinkHubUI.Areas.User.Controllers
 {
+    [Authorize(Roles="A,U")]
     public class URLController : BaseUserController
     {
         // GET: User/URL
