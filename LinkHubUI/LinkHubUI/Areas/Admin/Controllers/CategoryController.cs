@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace LinkHubUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "A")]
     public class CategoryController : BaseAdminController
     {
         // GET: Admin/Category
