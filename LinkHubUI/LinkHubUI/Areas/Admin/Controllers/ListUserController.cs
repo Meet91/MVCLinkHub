@@ -7,10 +7,10 @@ using System.Web.Mvc;
 
 namespace LinkHubUI.Areas.Admin.Controllers
 {
+
+    [Authorize(Roles="A")]
     public class ListUserController : BaseAdminController
     {
-       
-
         // GET: Admin/ListUser
         public ActionResult Index(string sortOrder, string sortBy, string Page)
         {
