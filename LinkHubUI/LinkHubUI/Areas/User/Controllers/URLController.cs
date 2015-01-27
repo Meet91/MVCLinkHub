@@ -14,12 +14,7 @@ namespace LinkHubUI.Areas.User.Controllers
         // GET: User/URL
         public ActionResult Index()
         {
-            //LinkHubDbEntities db = new LinkHubDbEntities();
-            //ViewBag.CategoryId = new SelectList(db.tbl_Category, "CategoryId", "CategoryName");
-
             ViewBag.CategoryId = new SelectList(ObjBs.categoryBs.GetAll().ToList(), "CategoryId", "CategoryName");
-            ViewBag.UserId = new SelectList(ObjBs.urlBs.GetAll().ToList(), "UserId", "UserEmail");
-
             return View();
         }
 
@@ -27,11 +22,10 @@ namespace LinkHubUI.Areas.User.Controllers
         [HttpPost]
         public ActionResult Create(tbl_Url objUrl)
         {
-            //LinkHubDbEntities db = new LinkHubDbEntities();
-            //ViewBag.CategoryId = new SelectList(db.tbl_Category, "CategoryId", "CategoryName");
-
             try
             {
+                objUrl.IsApproved = "P";
+                objUrl.UserId = ObjBs.userBs.GetAll().Where(x => x.UserEmail == User.Identity.Name).FirstOrDefault().UserId;
                 if(ModelState.IsValid)
                 {
                     ObjBs.urlBs.Insert(objUrl);
