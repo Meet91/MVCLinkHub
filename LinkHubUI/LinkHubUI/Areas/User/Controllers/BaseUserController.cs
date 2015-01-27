@@ -16,10 +16,6 @@ namespace LinkHubUI.Areas.User.Controllers
             ObjBs = new UserAreaBs();
         }
 
-        // GET: User/BaseUser
-        public ActionResult Index()
-        {
-            return View();
-        }
+       
     }
 }
