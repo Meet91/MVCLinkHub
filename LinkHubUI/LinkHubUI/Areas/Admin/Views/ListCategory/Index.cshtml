@@ -10,15 +10,18 @@
     }
 </script>
 <h2>Category List</h2>
-@if(TempData["msg"]!=null)
+@if (TempData["msg"] != null)
 {
-    <h3>@TempData["msg"].ToString()</h3>
+    <div class="alert alert-dismissable alert-info">
+        <button class="close" type="button" data-dismiss="alert">×</button>
+        @TempData["msg"].ToString()
+    </div>
 }
 <p>
     @Html.ActionLink("Create New","Create")
 </p>
-<table class="table">
-    <tr>
+<table class="table table-striped table-bordered table-hover ">
+    <tr class="info">
         <th>
             @Html.ActionLink("CategoryName", "Index", new { SortOrder = ViewBag.SortOrder == null ? "Asc" : (ViewBag.SortOrder == "Asc" ? "Desc" : "Asc"), SortBy = "CategoryName", page = (ViewBag.Page == null ? "1" : ViewBag.Page) })
             @*@Html.DisplayNameFor(model => model.CategoryName)*@
@@ -30,18 +33,18 @@
         <th>Delete</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryDesc)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId }, new {onclick="return confirmDelete()" })
-        </td>
-    </tr>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryDesc)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId }, new {onclick="return confirmDelete()" })
+            </td>
+        </tr>
 }
 
 </table>
@@ -50,16 +53,25 @@
     double totalPages = @ViewBag.TotalPages;
 }
 
-@for (int i = 1; i <= totalPages; i++)
+<ul class="pagination">
+
+    @for (int i = 1; i <= totalPages; i++)
 {
     if (i == ViewBag.Page)
     {
-        <b> @Html.ActionLink(i.ToString() + " ", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "CategoryName" : ViewBag.SortBy), Page = i })</b>
+        <li class="active">@Html.ActionLink(i.ToString() + " ", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "CategoryName" : ViewBag.SortBy), Page = i })</li>
     }
     else
     {
-        @Html.ActionLink(i.ToString() + " ", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "CategoryName" : ViewBag.SortBy), Page = i })
+        <li>@Html.ActionLink(i.ToString() + " ", "Index", new { SortOrder = (ViewBag.SortOrder == null ? "Asc" : ViewBag.SortOrder), SortBy = (ViewBag.SortBy == null ? "CategoryName" : ViewBag.SortBy), Page = i })</li>
     }
 }
+
+
+
+
+</ul>
+
+
 
 
