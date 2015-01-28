@@ -4,15 +4,16 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Scripts/jquery-1.10.2.js"></script>
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
 <h4>SignIn Here</h4>
 @if (TempData["msg"] != null)
 {
-    <h4>
+    <div class="alert alert-dismissable alert-info">
+        <button class="close" type="button" data-dismiss="alert">×</button>
         @TempData["msg"].ToString()
-    </h4>
+    </div>   
 }
 
 @using (Html.BeginForm("SignIn","Login",FormMethod.Post)) 
@@ -43,7 +44,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="SignIn" class="btn btn-default" />
+                <input type="submit" value="SignIn" class="btn btn-primary" />
             </div>
         </div>
     </div>
