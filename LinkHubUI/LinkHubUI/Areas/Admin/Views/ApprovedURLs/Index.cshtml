@@ -18,11 +18,12 @@
 <h2>Manage URLs</h2>
 
 
-@if(TempData["msg"]!=null)
+@if (TempData["msg"] != null)
 {
-    <h4>
+    <div class="alert alert-dismissable alert-info">
+        <button class="close" type="button" data-dismiss="alert">×</button>
         @TempData["msg"].ToString()
-    </h4>
+    </div>
 }
 
 <h4>
