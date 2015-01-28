@@ -22,8 +22,8 @@ namespace LinkHubUI.Areas.Security.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
+            //    if (ModelState.IsValid)
+            //    {
                     if (Membership.ValidateUser(user.UserEmail, user.Password))
                     {
                         FormsAuthentication.SetAuthCookie(user.UserEmail, false);
@@ -34,12 +34,12 @@ namespace LinkHubUI.Areas.Security.Controllers
                         TempData["msg"] = "Login Failed.";
                         return RedirectToAction("Index");
                     }
-                }
-                else
-                {
-                    TempData["msg"] = "Invalid Username or Password.";
-                    return View("Index");
-                }
+                //}
+                //else
+                //{
+                //    TempData["msg"] = "Invalid Username or Password.";
+                //    return View("Index");
+                //}
                 
             }
             catch (Exception ex)
