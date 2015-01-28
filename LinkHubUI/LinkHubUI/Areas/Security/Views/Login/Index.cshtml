@@ -4,8 +4,10 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Login</h2>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<h4>SignIn Here</h4>
 @if (TempData["msg"] != null)
 {
     <h4>
@@ -18,7 +20,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>SignIn Here</h4>
+      
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
        
@@ -46,7 +48,3 @@
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
