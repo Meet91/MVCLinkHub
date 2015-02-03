@@ -4,8 +4,83 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script>
+
+    $(document).ready(function () {
+
+        $(document).ajaxStart(function () {
+            $("#loading").show();
+        });
+
+        $(document).ajaxStop(function () {
+            $("#loading").hide();
+        });
+
+        BindSelectAll();
+
+        $("#Approve").click(function () {
+            checkedIds = $(".chk").filter(":checked").map(function () { return this.id });
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ApproveOrRejectAll","ApprovedURLs")",
+                traditional: true,
+                data: { Ids: checkedIds.toArray(), Status: "A", CurrentStatus: "@ViewBag.Status" },
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                $("#Data").html(data);
+                BindSelectAll();
+            }
+
+            function errorFunc() {
+                alert('error');
+            }
+
+        });
+
+        $("#Reject").click(function () {
+            checkedIds = $(".chk").filter(":checked").map(function () { return this.id });
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ApproveOrRejectAll","ApprovedURLs")",
+                traditional: true,
+                data: { Ids: checkedIds.toArray(), Status: "R",CurrentStatus:"@ViewBag.Status" },
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                $("#Data").html(data);
+                BindSelectAll();
+            }
+
+            function errorFunc() {
+                alert('error');
+            }
+
+        });
+    });
+
+    function BindSelectAll() {
+        $("#selectall").click(function () {
+
+            if (this.checked) {
+                $('.chk').each(function () {
+                    this.checked = true;
+                });
+            }
+            else {
+                $('.chk').each(function () {
+                    this.checked = false;
+                });
+            }
+
+        });
+    }
+
     function confirmApprove() {
         confirm('Are you sure you want to Approve???');
     }
@@ -15,96 +90,62 @@
     }
 
 </script>
+
 <h2>Manage URLs</h2>
 
 
-@if (TempData["msg"] != null)
-{
-    <div class="alert alert-dismissable alert-info">
-        <button class="close" type="button" data-dismiss="alert">×</button>
-        @TempData["msg"].ToString()
+
+
+<div id="loading" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Loading...</h4>
+            </div>
+            <div class="modal-body">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" style="width: 85%"></div>
+                </div>
+            </div>
+        </div>
     </div>
-}
+</div>
 
-<h4>
-
+<ul class="nav nav-pills">
     @if (ViewBag.Status == "P")
     {
-        <b>@Html.ActionLink("Pending Urls |", "Index", new { Status = "P" })</b>
+        <li class="active">@Html.ActionLink("Pending Urls ", "Index", new { Status = "P" })</li>
     }
     else
     {
-        @Html.ActionLink("Pending Urls |", "Index", new { Status = "P" })
+        <li>@Html.ActionLink("Pending Urls ", "Index", new { Status = "P" })</li>
     }
     @if (ViewBag.Status == "A")
     {
-        <b>@Html.ActionLink(" Approved Urls |", "Index", new { Status = "A" })</b>
+        <li class="active">
+            @Html.ActionLink(" Approved Urls ", "Index", new { Status = "A" })
+        </li>
     }
     else
     {
-        @Html.ActionLink(" Approved Urls |", "Index", new { Status = "A" })
+        <li>@Html.ActionLink(" Approved Urls ", "Index", new { Status = "A" })</li>
     }
     @if (ViewBag.Status == "R")
     {
-        <b>@Html.ActionLink(" Rejected Urls |", "Index", new { Status = "R" })</b>
+        <li class="active">
+            @Html.ActionLink(" Rejected Urls ", "Index", new { Status = "R" })
+        </li>
     }
     else
     {
-        @Html.ActionLink(" Rejected Urls |", "Index", new { Status = "R" })
+        <li>@Html.ActionLink(" Rejected Urls ", "Index", new { Status = "R" })</li>
     }
-</h4>
-<table class="table">
-    <tr>
-        <th>
-            Approve/Reject
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UrlTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Url)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UrlDesc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsApproved)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbl_Category.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tbl_User.UserEmail)
-        </th>
-        <th></th>
-    </tr>
+</ul>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Approve", "Approve", new { id = item.UrlId }, new {onclick = "return confirmApprove();" }) |
-            @Html.ActionLink("Reject", "Reject", new { id = item.UrlId }, new { onclick = "return confirmReject();" })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UrlTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Url)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UrlDesc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsApproved)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbl_Category.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tbl_User.UserEmail)
-        </td>
-        
-    </tr>
-}
+<div id="Data">
+    @Html.Partial("pv_ApprovedUrls", Model)
+</div>
 
-</table>
+
+<input type="button" id="Approve" value="Approve" class="btn btn-primary" />&nbsp;&nbsp;
+<input type="button" id="Reject" value="Reject" class="btn btn-primary" />
