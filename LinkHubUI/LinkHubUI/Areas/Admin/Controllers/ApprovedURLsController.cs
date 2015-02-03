@@ -60,5 +60,24 @@ namespace LinkHubUI.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+
+        //currentstatus is used to return to the same status,for eg.if user is in pending status,then he should redirect to same status.
+        [HttpPost]
+        public ActionResult ApproveOrRejectAll(List<int> Ids,string Status,string CurrentStatus)
+        {
+            try
+            {
+                ObjBs.ApproveOrReject(Ids, Status);
+                TempData["msg"] = "Operation Successfull.";
+                var urls = ObjBs.urlBs.GetAll().Where(x => x.IsApproved == CurrentStatus).ToList();
+                return PartialView("pv_ApprovedUrls", urls);
+            }catch(Exception ex)
+            {
+                TempData["msg"] = "Operation Failed." + ex.Message;
+                var urls = ObjBs.urlBs.GetAll().Where(x => x.IsApproved == CurrentStatus).ToList();
+                return PartialView("pv_ApprovedUrls", urls);
+            }
+        }
     }
 }
