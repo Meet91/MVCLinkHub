@@ -109,6 +109,7 @@
     <Content Include="Areas\Security\Views\Register\Index.cshtml" />
     <Content Include="Areas\Common\Views\BrowseURL\Index.cshtml" />
     <Content Include="Areas\Common\Views\QuickURLSubmit\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ApprovedURLs\pv_ApprovedUrls.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
