@@ -23,15 +23,31 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", new {Controller="Home",Area="Common" })</li>
-                    <li>@Html.ActionLink("BrowseURL", "Index", new { Controller = "BrowseURL", Area = "Common" })</li>
-                    <li>@Html.ActionLink("QuickURLSubmit", "Index", new { Controller = "QuickURLSubmit", Area = "Common" })</li>
 
-                    @if (User.Identity.IsAuthenticated) 
-                    { 
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Url<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            @Html.ActionLink("BrowseURL", "Index", new { Controller = "BrowseURL", Area = "Common" })
+                            </li>
+                            <li>@Html.ActionLink("QuickURLSubmit", "Index", new { Controller = "QuickURLSubmit", Area = "Common" })</li>
+                        </ul>
+                    </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
                         if (User.IsInRole("A"))
                         {
-                            <li>@Html.ActionLink("Category", "Index", new { Controller = "Category", Area = "Admin" })</li>
-                            <li>@Html.ActionLink("ListCategory", "Index", new { Controller = "ListCategory", Area = "Admin" })</li>
+
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Category <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        @Html.ActionLink("Category", "Index", new { Controller = "Category", Area = "Admin" })
+                                    </li>
+                                    <li>@Html.ActionLink("ListCategory", "Index", new { Controller = "ListCategory", Area = "Admin" })</li>
+                                </ul>
+                            </li>
+
                             <li>@Html.ActionLink("ListUser", "Index", new { Controller = "ListUser", Area = "Admin" })</li>
                             <li>@Html.ActionLink("ApprovedURL", "Index", new { Controller = "ApprovedURLs", Area = "Admin" })</li>
                         }
