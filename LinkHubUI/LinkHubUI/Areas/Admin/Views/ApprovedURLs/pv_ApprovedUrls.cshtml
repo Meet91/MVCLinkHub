@@ -1,0 +1,67 @@
+﻿@model IEnumerable<BOL.tbl_Url>
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-dismissable alert-info">
+        <button class="close" type="button" data-dismiss="alert">×</button>
+        @TempData["msg"].ToString()
+    </div>
+}
+
+<table class="table table-responsive table-bordered table-striped table-hover">
+    <tr class="info">
+        <th>
+            @Html.CheckBox("selectall")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Category.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_User.UserEmail)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*@Html.ActionLink("Approve", "Approve", new { id = item.UrlId }, new {onclick = "return confirmApprove();" }) |
+                    @Html.ActionLink("Reject", "Reject", new { id = item.UrlId }, new { onclick = "return confirmReject();" })*@
+
+                @Html.CheckBox(item.UrlId.ToString(), false, new { @class = "chk", Id = item.UrlId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrlTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrlDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsApproved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tbl_User.UserEmail)
+            </td>
+
+        </tr>
+    }
+    
+</table>
