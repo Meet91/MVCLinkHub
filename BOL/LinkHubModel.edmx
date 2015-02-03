@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LinkHubDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LinkHubDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tbl_Category">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -20,7 +20,7 @@
           <Property Name="UrlId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UrlTitle" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Url" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UrlDesc" Type="varchar(max)" Nullable="false" />
+          <Property Name="UrlDesc" Type="varchar(max)" />
           <Property Name="CategoryId" Type="int" />
           <Property Name="UserId" Type="int" />
           <Property Name="IsApproved" Type="varchar" MaxLength="1" />
@@ -71,8 +71,7 @@
             <End Role="tbl_Url" EntitySet="tbl_Url" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LinkHubDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -92,7 +91,7 @@
           <Property Name="UrlId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UrlTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UrlDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UrlDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CategoryId" Type="Int32" />
           <Property Name="UserId" Type="Int32" />
           <Property Name="IsApproved" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
