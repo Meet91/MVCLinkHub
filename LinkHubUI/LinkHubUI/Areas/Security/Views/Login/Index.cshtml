@@ -44,7 +44,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="SignIn" class="btn btn-primary" />
+                <input type="submit" value="SignIn" class="btn btn-primary" /> (Or)
+                @Html.ActionLink("Login with Gmail", "ExternalLogin", "Login", new { provider = "google"},null)
             </div>
         </div>
     </div>
