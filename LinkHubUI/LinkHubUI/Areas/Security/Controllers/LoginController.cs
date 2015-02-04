@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Microsoft.Web.WebPages.OAuth;
 
 namespace LinkHubUI.Areas.Security.Controllers
 {
@@ -46,6 +47,29 @@ namespace LinkHubUI.Areas.Security.Controllers
             {
                 TempData["msg"] = "Login Failed: "+ex.Message;
                 return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult ExternalLogin(string provider)
+        {
+            OAuthWebSecurity.RequestAuthentication(provider, Url.Action("ExternalLoginCallback"));
+            return RedirectToAction("Index", "Home", new { area = "Common" });
+        }
+
+        public ActionResult ExternalLoginCallback(string provider)
+        {
+            var result = OAuthWebSecurity.VerifyAuthentication();
+
+            if (result.IsSuccessful == false)
+            {
+                TempData["msg"] = "Login Failed.";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ObjBs.CreateUserIfDonotExist(result.UserName);
+                FormsAuthentication.SetAuthCookie(result.UserName, false);
+                return RedirectToAction("Index", "Home", new { area = "Common" });
             }
         }
 
