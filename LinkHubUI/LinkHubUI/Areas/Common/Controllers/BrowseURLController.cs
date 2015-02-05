@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Reporting.WebForms;
 
 namespace LinkHubUI.Areas.Common.Controllers
 {
@@ -77,6 +78,31 @@ namespace LinkHubUI.Areas.Common.Controllers
             urls=urls.Skip((page-1)*10).Take(10);
 
             return View(urls);
+        }
+
+        public FileResult ExportTo(string ReportType)
+        {
+            LocalReport localReport = new LocalReport();
+            localReport.ReportPath = Server.MapPath("~/Reports/UrlReport.rdlc");
+
+            ReportDataSource reportDataSource = new ReportDataSource();
+            reportDataSource.Name = "UrlDataSet";
+            reportDataSource.Value = ObjBs.urlBs.GetAll().Where(x => x.IsApproved == "A").ToList();
+
+            localReport.DataSources.Add(reportDataSource);
+
+            string reportType = ReportType;
+            string mimeType;
+            string encoding;
+            string fileNameExtension = (ReportType == "Excel") ? "xsls" :(ReportType=="Word"? "doc" :"pdf");
+            Warning[] warning;
+            string[] streams;
+            byte[] renderedBytes;
+
+            renderedBytes = localReport.Render(reportType, "", out mimeType, out encoding, out fileNameExtension, out streams, out warning);
+            Response.AddHeader("content-disposition","attachment;filename=Urls."+fileNameExtension);
+
+            return File(renderedBytes, fileNameExtension);
         }
     }
 }
