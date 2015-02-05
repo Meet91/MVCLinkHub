@@ -63,6 +63,8 @@
       <HintPath>C:\Users\Burmy\Desktop\MVCLinkHub\trunk\BOL\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Web.WebPages.OAuth, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.2.3-beta1\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
@@ -148,6 +150,17 @@
     <Content Include="Areas\Common\Views\BrowseURL\Index.cshtml" />
     <Content Include="Areas\Common\Views\QuickURLSubmit\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ApprovedURLs\pv_ApprovedUrls.cshtml" />
+    <Content Include="LinkHubDbDataSet.xsc">
+      <DependentUpon>LinkHubDbDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="LinkHubDbDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LinkHubDbDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="LinkHubDbDataSet.xss">
+      <DependentUpon>LinkHubDbDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -184,6 +197,11 @@
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LinkHubDbDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LinkHubDbDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -231,6 +249,9 @@
       <Project>{3a26a4eb-e5cc-4f72-af90-5c4269d93e25}</Project>
       <Name>BOL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\UrlReport.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
