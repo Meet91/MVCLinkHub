@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BOL;
+using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,12 @@ namespace BLL
 {
     public class SecurityBs: BaseBs
     {
-        
+
+        public void CreateUserIfDonotExist(string UserEmail)
+        {
+            LinkHubMembershipProvider P = new LinkHubMembershipProvider();
+            P.CreateUserIfDonotExist(UserEmail,userBs);
+        }
     }
 
     public class LinkHubMembershipProvider : MembershipProvider
@@ -165,6 +171,14 @@ namespace BLL
             if (count != 0)
                 return true;
             return false;
+        }
+
+        internal void CreateUserIfDonotExist(string UserEmail, UserBs userBs)
+        {
+            if (userBs.GetAll().Where(x => x.UserEmail == UserEmail).Count() == 0)
+            {
+                userBs.Insert(new tbl_User() { UserEmail = UserEmail, Role = "U", Password = "123", ConfirmPassword = "123" });
+            }
         }
     }
 
