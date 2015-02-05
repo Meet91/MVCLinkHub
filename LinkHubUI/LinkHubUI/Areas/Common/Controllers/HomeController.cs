@@ -12,7 +12,7 @@ namespace LinkHubUI.Areas.Common.Controllers
         // GET: Common/Home
         public ActionResult Index()
         {
-            
+            TempData["msg"] = "Admin Username:- admin@gmail.com &" + " Admin Password:- admin*****" + "*****User Username:- user@gmail.com &" + " User Password:- user";
             return View();
         }
     }
