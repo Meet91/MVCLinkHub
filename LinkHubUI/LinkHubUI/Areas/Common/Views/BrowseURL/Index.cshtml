@@ -7,6 +7,21 @@
 
 <h2>URLs</h2>
 
+<div class="pull-right">
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary">Export To</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            <li>@Html.ActionLink("Excel", "ExportTo", new { ReportType = "Excel" })</li>
+            <li>@Html.ActionLink("PDF", "ExportTo", new { ReportType = "PDF" })</li>
+            <li>@Html.ActionLink("Word", "ExportTo", new { ReportType = "Word" })</li>
+        </ul>
+    </div>
+</div>
+
+
+
+
 
 <table class="table table-striped table-bordered table-hover">
     <tr class="info">
